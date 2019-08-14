@@ -10,6 +10,9 @@ target_link_libraries(clearfield SodiumCxx Qt5::Widgets SQtWidgets)
 add_executable(label label.cpp)
 target_link_libraries(label SodiumCxx Qt5::Widgets SQtWidgets)
 
+add_executable(reverse reverse.cpp)
+target_link_libraries(reverse SodiumCxx Qt5::Widgets SQtWidgets)
+
 add_executable(gamechat gamechat.cpp)
 target_link_libraries(gamechat SodiumCxx Qt5::Widgets SQtWidgets)
 
