@@ -7,6 +7,7 @@
 class SQLineEdit : public QLineEdit
 {
 public:
+    SQLineEdit(const QString &initialText);
     SQLineEdit(const sodium::stream<QString> &sText, const QString &initialText);
     ~SQLineEdit();
 

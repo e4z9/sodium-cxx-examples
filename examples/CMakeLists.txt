@@ -7,5 +7,8 @@ target_link_libraries(airline2 SodiumCxx Qt5::Widgets SQtWidgets)
 add_executable(clearfield clearfield.cpp)
 target_link_libraries(clearfield SodiumCxx Qt5::Widgets SQtWidgets)
 
+add_executable(label label.cpp)
+target_link_libraries(label SodiumCxx Qt5::Widgets SQtWidgets)
+
 add_executable(noglitches noglitches.cpp)
 target_link_libraries(noglitches SodiumCxx)
