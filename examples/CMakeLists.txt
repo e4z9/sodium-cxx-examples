@@ -19,5 +19,8 @@ target_link_libraries(gamechat SodiumCxx Qt5::Widgets SQtWidgets)
 add_executable(redgreen redgreen.cpp)
 target_link_libraries(redgreen SodiumCxx Qt5::Widgets SQtWidgets)
 
+add_executable(translate translate.cpp)
+target_link_libraries(translate SodiumCxx Qt5::Widgets SQtWidgets)
+
 add_executable(noglitches noglitches.cpp)
 target_link_libraries(noglitches SodiumCxx)
