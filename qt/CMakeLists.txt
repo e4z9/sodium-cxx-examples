@@ -2,6 +2,7 @@ add_library(SQtWidgets
   sqcombobox.h
   sqdatefield.cpp sqdatefield.h
   sqlabel.cpp sqlabel.h
+  sqlineedit.cpp sqlineedit.h
   sqpushbutton.cpp sqpushbutton.h
 )
 target_include_directories(SQtWidgets PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})

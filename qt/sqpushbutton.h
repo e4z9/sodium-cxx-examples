@@ -9,6 +9,7 @@
 class SQPushButton : public QPushButton
 {
 public:
+    SQPushButton(const QString &text);
     SQPushButton(const QString &text, const sodium::cell<bool> &enabled);
     ~SQPushButton();
 
