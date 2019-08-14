@@ -4,6 +4,8 @@ Sodium-cxx is the C++ variant of the Sodium framework for Functional Reactive Pr
 There is a great book `Functional Reactive Programming` from Stephen Blackheath and
 Anthony Jones, which includes many examples based on the Java variant of Sodium.
 This project aims to translate these examples to C++.
+You find the original examples in the
+[Sodium repository](https://github.com/SodiumFRP/sodium/tree/master/book).
 
 ## How to build
 
