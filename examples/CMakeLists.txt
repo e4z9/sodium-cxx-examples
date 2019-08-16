@@ -25,5 +25,11 @@ target_link_libraries(translate SodiumCxx Qt5::Widgets SQtWidgets)
 add_executable(spinner spinner.cpp)
 target_link_libraries(spinner SodiumCxx Qt5::Widgets SQtWidgets)
 
+add_executable(add add.cpp)
+target_link_libraries(add SodiumCxx Qt5::Widgets SQtWidgets)
+
+add_executable(spinme spinme.cpp)
+target_link_libraries(spinme SodiumCxx Qt5::Widgets SQtWidgets)
+
 add_executable(noglitches noglitches.cpp)
 target_link_libraries(noglitches SodiumCxx)
