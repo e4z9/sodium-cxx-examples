@@ -28,8 +28,11 @@ target_link_libraries(spinner SodiumCxx Qt5::Widgets SQtWidgets)
 add_executable(add add.cpp)
 target_link_libraries(add SodiumCxx Qt5::Widgets SQtWidgets)
 
-add_executable(spinme spinme.cpp)
+add_executable(spinme spinme.cpp sqspinner.cpp sqspinner.h)
 target_link_libraries(spinme SodiumCxx Qt5::Widgets SQtWidgets)
+
+add_executable(formvalidation formvalidation.cpp sqspinner.cpp sqspinner.h)
+target_link_libraries(formvalidation SodiumCxx Qt5::Widgets SQtWidgets)
 
 add_executable(noglitches noglitches.cpp)
 target_link_libraries(noglitches SodiumCxx)
