@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     auto msg = new SQLineEdit("Hello");
-    cell<QString> reversed = msg->text.map([](QString s) {
+    const cell<QString> reversed = msg->text.map([](QString s) {
         std::reverse(std::begin(s), std::end(s));
         return s;
     });

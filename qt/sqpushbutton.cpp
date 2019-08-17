@@ -12,7 +12,7 @@ SQPushButton::SQPushButton(const QString &text)
 SQPushButton::SQPushButton(const QString &text, const cell<bool> &enabled)
     : QPushButton(text)
 {
-    stream_sink<unit> sClickedSink;
+    const stream_sink<unit> sClickedSink;
     QObject::connect(this, &QPushButton::clicked, [sClickedSink] { sClickedSink.send(unit()); });
     sClicked = sClickedSink;
 

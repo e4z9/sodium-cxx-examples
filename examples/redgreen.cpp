@@ -16,10 +16,10 @@ int main(int argc, char *argv[])
 
     auto red = new SQPushButton("red");
     auto green = new SQPushButton("green");
-    stream<QString> sRed = red->sClicked.map([](unit) -> QString { return "red"; });
-    stream<QString> sGreen = green->sClicked.map([](unit) -> QString { return "green"; });
-    stream<QString> sColor = sRed.or_else(sGreen);
-    cell<QString> color = sColor.hold("");
+    const stream<QString> sRed = red->sClicked.map([](unit) -> QString { return "red"; });
+    const stream<QString> sGreen = green->sClicked.map([](unit) -> QString { return "green"; });
+    const stream<QString> sColor = sRed.or_else(sGreen);
+    const cell<QString> color = sColor.hold("");
     auto lbl = new SQLabel(color);
 
     // GUI layout

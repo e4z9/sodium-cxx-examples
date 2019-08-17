@@ -17,9 +17,11 @@ int main(int argc, char *argv[])
 
     auto onegai = new SQPushButton("Onegai shimasu");
     auto thanks = new SQPushButton("Thank you");
-    stream<QString> sOnegai = onegai->sClicked.map([](unit) -> QString { return "Onegai shimasu"; });
-    stream<QString> sThanks = thanks->sClicked.map([](unit) -> QString { return "Thank you"; });
-    stream<QString> sCanned = sOnegai.or_else(sThanks);
+    const stream<QString> sOnegai = onegai->sClicked.map(
+        [](unit) -> QString { return "Onegai shimasu"; });
+    const stream<QString> sThanks = thanks->sClicked.map(
+        [](unit) -> QString { return "Thank you"; });
+    const stream<QString> sCanned = sOnegai.or_else(sThanks);
     auto text = new SQLineEdit(sCanned, "");
 
     // GUI layout

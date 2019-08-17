@@ -19,13 +19,13 @@ int main(int argc, char *argv[])
 
     auto english = new SQLineEdit("I like FRP");
     auto translate = new SQPushButton("Translate");
-    stream<QString> sLatin = translate->sClicked
-                                 .snapshot(english->text, [](unit, const QString &text) {
-                                     QString result = text.trimmed();
-                                     result.replace(QRegularExpression("\\s+|$"), "us ");
-                                     return result.trimmed();
-                                 });
-    cell<QString> latin = sLatin.hold("");
+    const stream<QString> sLatin = translate->sClicked
+                                       .snapshot(english->text, [](unit, const QString &text) {
+                                           QString result = text.trimmed();
+                                           result.replace(QRegularExpression("\\s+|$"), "us ");
+                                           return result.trimmed();
+                                       });
+    const cell<QString> latin = sLatin.hold("");
     auto lblLatin = new SQLabel(latin);
 
     // GUI layout

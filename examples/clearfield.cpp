@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     auto clear = new SQPushButton("Clear");
-    stream<QString> sClearIt = clear->sClicked.map([](unit) { return QString(); });
+    const stream<QString> sClearIt = clear->sClicked.map([](unit) { return QString(); });
     auto text = new SQLineEdit(sClearIt, "Hello");
 
     // GUI layout
