@@ -23,8 +23,8 @@ int main(int argc, char *argv[])
         auto lblValue = new SQLabel(value.map([](int i) { return QString::number(i); }));
         auto plus = new SQPushButton("+");
         auto minus = new SQPushButton("-");
-        const stream<int> sPlusDelta = plus->sClicked.map([](unit) { return 1; });
-        const stream<int> sMinusDelta = minus->sClicked.map([](unit) { return -1; });
+        const stream<int> sPlusDelta = plus->sClicked().map([](unit) { return 1; });
+        const stream<int> sMinusDelta = minus->sClicked().map([](unit) { return -1; });
         const stream<int> sDelta = sPlusDelta.or_else(sMinusDelta);
         const stream<int> sUpdate = sDelta.snapshot(value, [](int d, int v) { return v + d; });
         value.loop(sUpdate.hold(0));

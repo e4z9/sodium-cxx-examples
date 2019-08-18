@@ -14,9 +14,9 @@ SQPushButton::SQPushButton(const QString &text, const cell<bool> &enabled)
 {
     const stream_sink<unit> sClickedSink;
     QObject::connect(this, &QPushButton::clicked, [sClickedSink] { sClickedSink.send(unit()); });
-    sClicked = sClickedSink;
+    _sClicked = sClickedSink;
 
-    m_enabledUnsubscribe = enabled.listen([this](bool b) {
+    _enabledUnsubscribe = enabled.listen([this](bool b) {
         if (QThread::currentThread() == thread())
             setEnabled(b);
         else
@@ -27,6 +27,11 @@ SQPushButton::SQPushButton(const QString &text, const cell<bool> &enabled)
 
 SQPushButton::~SQPushButton()
 {
-    if (m_enabledUnsubscribe)
-        m_enabledUnsubscribe();
+    if (_enabledUnsubscribe)
+        _enabledUnsubscribe();
+}
+
+const sodium::stream<unit> &SQPushButton::sClicked() const
+{
+    return _sClicked;
 }

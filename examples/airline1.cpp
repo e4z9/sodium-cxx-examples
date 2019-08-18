@@ -19,8 +19,9 @@ int main(int argc, char *argv[])
     auto dep = new SQDateField;
     auto ret = new SQDateField;
     // Should also prevent invalid dates like Jun 31. --> left as an exercise
-    const cell<bool> valid = dep->date.lift(ret->date,
-                                            [](const QDate &d, const QDate &r) { return d <= r; });
+    const cell<bool> valid = dep->date().lift(ret->date(), [](const QDate &d, const QDate &r) {
+        return d <= r;
+    });
     auto ok = new SQPushButton("OK", valid);
 
     // GUI layout

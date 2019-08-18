@@ -13,5 +13,5 @@ public:
     ~SQLabel();
 
 private:
-    std::function<void()> m_textUnsubscribe;
+    std::function<void()> _textUnsubscribe;
 };

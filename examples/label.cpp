@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     auto msg = new SQLineEdit("Hello");
-    auto lbl = new SQLabel(msg->text);
+    auto lbl = new SQLabel(msg->text());
 
     // GUI layout
     QWidget window;

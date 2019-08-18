@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     Rule r1([](const QDate &d, const QDate &r) { return d <= r; });
     Rule r2([unlucky](const QDate &d, const QDate &r) { return !unlucky(d) && !unlucky(r); });
     Rule r = r1.andRule(r2);
-    const cell<bool> valid = r.reify(dep->date, ret->date);
+    const cell<bool> valid = r.reify(dep->date(), ret->date());
     auto ok = new SQPushButton("OK", valid);
 
     // GUI layout

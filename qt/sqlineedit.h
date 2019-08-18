@@ -15,8 +15,9 @@ public:
                const sodium::cell<bool> &enabled);
     ~SQLineEdit();
 
-    sodium::cell<QString> text;
+    const sodium::cell<QString> &text() const;
 
 private:
-    std::function<void()> m_unsubscribe;
+    std::function<void()> _unsubscribe;
+    sodium::cell<QString> _text;
 };

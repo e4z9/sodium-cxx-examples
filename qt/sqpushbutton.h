@@ -13,8 +13,9 @@ public:
     SQPushButton(const QString &text, const sodium::cell<bool> &enabled);
     ~SQPushButton();
 
-    sodium::stream<sodium::unit> sClicked;
+    const sodium::stream<sodium::unit> &sClicked() const;
 
 private:
-    std::function<void()> m_enabledUnsubscribe;
+    std::function<void()> _enabledUnsubscribe;
+    sodium::stream<sodium::unit> _sClicked;
 };

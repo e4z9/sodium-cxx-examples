@@ -9,5 +9,8 @@ class SQSpinner : public QWidget
 public:
     SQSpinner(int initialValue);
 
-    sodium::cell<int> value;
+    const sodium::cell<int> &value() const;
+
+private:
+    sodium::cell<int> _value;
 };

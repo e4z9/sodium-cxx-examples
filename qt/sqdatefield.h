@@ -12,10 +12,11 @@ class SQDateField : public QWidget
 public:
     SQDateField();
 
-    sodium::cell<QDate> date;
+    const sodium::cell<QDate> &date() const;
 
 private:
-    SQComboBox<int> *year = nullptr;
-    SQComboBox<int> *month = nullptr;
-    SQComboBox<int> *day = nullptr;
+    SQComboBox<int> *_year = nullptr;
+    SQComboBox<int> *_month = nullptr;
+    SQComboBox<int> *_day = nullptr;
+    sodium::cell<QDate> _date;
 };

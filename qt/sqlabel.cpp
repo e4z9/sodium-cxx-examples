@@ -7,7 +7,7 @@ using namespace sodium;
 
 SQLabel::SQLabel(const sodium::cell<QString> &text)
 {
-    m_textUnsubscribe = text.listen([this](const QString &t) {
+    _textUnsubscribe = text.listen([this](const QString &t) {
         if (QThread::currentThread() == thread())
             setText(t);
         else
@@ -18,6 +18,6 @@ SQLabel::SQLabel(const sodium::cell<QString> &text)
 
 SQLabel::~SQLabel()
 {
-    if (m_textUnsubscribe)
-        m_textUnsubscribe();
+    if (_textUnsubscribe)
+        _textUnsubscribe();
 }

@@ -9,18 +9,18 @@
 using namespace sodium;
 
 SQSpinner::SQSpinner(int initialValue)
-    : value(initialValue)
+    : _value(initialValue)
 {
     stream_loop<int> sSetValue;
     auto textField = new SQLineEdit(sSetValue.map([](int v) { return QString::number(v); }),
                                     QString::number(initialValue));
-    value = textField->text.map([](const QString &s) { return s.toInt(); });
+    _value = textField->text().map([](const QString &s) { return s.toInt(); });
     auto plus = new SQPushButton("+");
     auto minus = new SQPushButton("-");
-    const stream<int> sPlusDelta = plus->sClicked.map([](unit) { return 1; });
-    const stream<int> sMinusDelta = minus->sClicked.map([](unit) { return -1; });
+    const stream<int> sPlusDelta = plus->sClicked().map([](unit) { return 1; });
+    const stream<int> sMinusDelta = minus->sClicked().map([](unit) { return -1; });
     const stream<int> sDelta = sPlusDelta.or_else(sMinusDelta);
-    sSetValue.loop(sDelta.snapshot(value, [](int d, int v) { return v + d; }));
+    sSetValue.loop(sDelta.snapshot(_value, [](int d, int v) { return v + d; }));
 
     // GUI layout
     auto layout = new QHBoxLayout;
@@ -38,4 +38,9 @@ SQSpinner::SQSpinner(int initialValue)
     layout->addLayout(buttonLayout);
 
     textField->setFixedWidth(50);
+}
+
+const sodium::cell<int> &SQSpinner::value() const
+{
+    return _value;
 }

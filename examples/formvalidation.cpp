@@ -32,27 +32,27 @@ int main(int argc, char *argv[])
         fields.reserve(maxEmails + 2);
 
         auto name = new SQLineEdit("");
-        fields.push_back({new QLabel("Name"), name, name->text.map([](const QString &s) -> QString {
-                              return s.trimmed().isEmpty()
-                                         ? "<-- enter something"
-                                         : !s.trimmed().contains(' ') ? "<-- must contain space"
-                                                                      : "";
-                          })});
+        fields.push_back(
+            {new QLabel("Name"), name, name->text().map([](const QString &s) -> QString {
+                 return s.trimmed().isEmpty()
+                            ? "<-- enter something"
+                            : !s.trimmed().contains(' ') ? "<-- must contain space" : "";
+             })});
 
         auto number = new SQSpinner(1);
-        fields.push_back({new QLabel("No of email addresses"), number, number->value.map([](int n) {
+        fields.push_back({new QLabel("No of email addresses"), number, number->value().map([](int n) {
                               return n < 1 || n > maxEmails
                                          ? QString("<-- must be 1 to %1").arg(maxEmails)
                                          : QString();
                           })});
 
         for (int i = 0; i < maxEmails; ++i) {
-            const cell<bool> enabled = number->value.map([i](int n) { return i < n; });
+            const cell<bool> enabled = number->value().map([i](int n) { return i < n; });
             auto email = new SQLineEdit("", enabled);
             fields.push_back(
                 {new QLabel(QString("Email #%1").arg(i + 1)),
                  email,
-                 email->text.lift(number->value, [i](const QString &s, int n) -> QString {
+                 email->text().lift(number->value(), [i](const QString &s, int n) -> QString {
                      return i >= n ? ""
                                    : s.trimmed().isEmpty()
                                          ? "<-- enter something"

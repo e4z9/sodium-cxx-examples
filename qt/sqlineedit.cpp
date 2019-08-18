@@ -21,7 +21,7 @@ SQLineEdit::SQLineEdit(const sodium::stream<QString> &sText,
                        const QString &initialText,
                        const sodium::cell<bool> &enabled)
     : QLineEdit(initialText)
-    , text(initialText)
+    , _text(initialText)
 {
     // Block textChanged signal handling until sText changes take effect in the GUI
     // (which is delayed by a singleShot for the not-in-main-thread case).
@@ -35,7 +35,7 @@ SQLineEdit::SQLineEdit(const sodium::stream<QString> &sText,
                                             .map([](int c) { return c == 0; });
 
     const stream_sink<QString> sUserChangesSnk;
-    text = sUserChangesSnk.gate(allowUserChanges).or_else(sText).hold(initialText);
+    _text = sUserChangesSnk.gate(allowUserChanges).or_else(sText).hold(initialText);
     connect(this, &QLineEdit::textChanged, [sUserChangesSnk](const QString &t) {
         sUserChangesSnk.send(t);
     });
@@ -52,7 +52,7 @@ SQLineEdit::SQLineEdit(const sodium::stream<QString> &sText,
     QTimer::singleShot(0, this, [this, enabled] { setEnabled(enabled.sample()); });
     auto unsubEnabled = enabled.listen([this](bool b) { setEnabled(b); });
 
-    m_unsubscribe = [unsubText, unsubEnabled] {
+    _unsubscribe = [unsubText, unsubEnabled] {
         if (unsubText)
             unsubText();
         if (unsubEnabled)
@@ -62,6 +62,11 @@ SQLineEdit::SQLineEdit(const sodium::stream<QString> &sText,
 
 SQLineEdit::~SQLineEdit()
 {
-    if (m_unsubscribe)
-        m_unsubscribe();
+    if (_unsubscribe)
+        _unsubscribe();
+}
+
+const sodium::cell<QString> &SQLineEdit::text() const
+{
+    return _text;
 }

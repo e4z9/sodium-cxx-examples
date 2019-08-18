@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 
     auto txtA = new SQLineEdit("5");
     auto txtB = new SQLineEdit("10");
-    cell<int> a = txtA->text.map([](const QString &s) { return s.toInt(); });
-    cell<int> b = txtB->text.map([](const QString &s) { return s.toInt(); });
+    cell<int> a = txtA->text().map([](const QString &s) { return s.toInt(); });
+    cell<int> b = txtB->text().map([](const QString &s) { return s.toInt(); });
     cell<int> sum = a.lift(b, [](int a, int b) { return a + b; });
     auto lblSum = new SQLabel(sum.map([](int s) { return QString::number(s); }));
 
