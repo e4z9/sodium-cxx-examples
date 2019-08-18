@@ -50,7 +50,12 @@ SQLineEdit::SQLineEdit(const sodium::stream<QString> &sText,
     });
 
     QTimer::singleShot(0, this, [this, enabled] { setEnabled(enabled.sample()); });
-    auto unsubEnabled = enabled.listen([this](bool b) { setEnabled(b); });
+    auto unsubEnabled = enabled.listen([this](bool b) {
+        if (QThread::currentThread() == thread())
+            setEnabled(b);
+        else
+            QTimer::singleShot(0, this, [this, b] { setEnabled(b); });
+    });
 
     _unsubscribe = [unsubText, unsubEnabled] {
         if (unsubText)
