@@ -13,7 +13,6 @@ SQLabel::SQLabel(const sodium::cell<QString> &text)
         else
             QTimer::singleShot(0, this, [this, t] { setText(t); });
     });
-    QTimer::singleShot(0, this, [this, text] { setText(text.sample()); });
 }
 
 SQLabel::~SQLabel()

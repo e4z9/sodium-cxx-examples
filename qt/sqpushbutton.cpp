@@ -22,7 +22,6 @@ SQPushButton::SQPushButton(const QString &text, const cell<bool> &enabled)
         else
             QTimer::singleShot(0, this, [this, b] { setEnabled(b); });
     });
-    QTimer::singleShot(0, this, [this, enabled] { setEnabled(enabled.sample()); });
 }
 
 SQPushButton::~SQPushButton()
