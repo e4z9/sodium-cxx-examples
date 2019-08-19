@@ -36,3 +36,6 @@ target_link_libraries(formvalidation SodiumCxx Qt5::Widgets SQtWidgets)
 
 add_executable(noglitches noglitches.cpp)
 target_link_libraries(noglitches SodiumCxx)
+
+add_executable(sametrans sametrans.cpp)
+target_link_libraries(sametrans SodiumCxx)
