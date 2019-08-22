@@ -1,10 +1,12 @@
 #pragma once
 
+#include <sqeditbase.h>
+
 #include <QLineEdit>
 
 #include <sodium/sodium.h>
 
-class SQLineEdit : public QLineEdit
+class SQLineEdit : public SQEditBase<QLineEdit>
 {
 public:
     SQLineEdit(const QString &initialText);
@@ -13,11 +15,4 @@ public:
     SQLineEdit(const sodium::stream<QString> &sText,
                const QString &initialText,
                const sodium::cell<bool> &enabled);
-    ~SQLineEdit();
-
-    const sodium::cell<QString> &text() const;
-
-private:
-    std::function<void()> _unsubscribe;
-    sodium::cell<QString> _text;
 };
