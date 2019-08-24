@@ -42,3 +42,6 @@ target_link_libraries(sametrans SodiumCxx)
 
 add_executable(lookup lookup.cpp)
 target_link_libraries(lookup SodiumCxx Qt5::Widgets Qt5::Network SQtWidgets)
+
+add_executable(promise1 promise1.cpp)
+target_link_libraries(promise1 SodiumCxx)
